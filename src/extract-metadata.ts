@@ -53,7 +53,7 @@ export default async function extractMetadata(stream: NodeJS.ReadableStream) {
   const elementsBeforeBody = ['html', 'head', 'base', 'link', 'meta', 'noscript', 'script', 'style', 'template', 'title']
 
   let end = false
-  rewriter.on("*", {
+  rewriter.on('*', {
     element(el) {
       if (!elementsBeforeBody.includes(el.tagName)) {
         end = true
