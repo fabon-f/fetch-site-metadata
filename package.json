@@ -26,8 +26,13 @@
     "url": "https://github.com/fabon-f/fetch-site-metadata/issues"
   },
   "homepage": "https://github.com/fabon-f/fetch-site-metadata#readme",
+  "dependencies": {
+    "html-rewriter-wasm": "^0.4.1",
+    "node-fetch": "^3.3.0"
+  },
   "devDependencies": {
     "@tsconfig/strictest": "^1.0.2",
+    "@types/node": "^18.11.18",
     "ava": "^5.1.0",
     "rimraf": "^4.0.4",
     "tsx": "^3.12.2",
