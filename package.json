@@ -1,0 +1,27 @@
+{
+  "name": "fetch-site-metadata",
+  "version": "0.1.0",
+  "description": "Scrape site metadata",
+  "type": "module",
+  "exports": "./index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=14.16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabon-f/fetch-site-metadata.git"
+  },
+  "keywords": [
+    "metadata",
+    "og"
+  ],
+  "author": "fabon <syobon.hinata.public@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fabon-f/fetch-site-metadata/issues"
+  },
+  "homepage": "https://github.com/fabon-f/fetch-site-metadata#readme"
+}
