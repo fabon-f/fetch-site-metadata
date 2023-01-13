@@ -29,6 +29,10 @@ function extractText(rewriter: HTMLRewriter, selector: string): Promise<string |
           resolve(str)
         }
       }
+    }).onDocument({
+      end() {
+        resolve(undefined)
+      }
     })
   })
 }
