@@ -18,7 +18,7 @@ const url = await listen(testServer)
 
 test('Interrupt request when <body> starts', async t => {
   t.timeout(300)
-  const res = await fetchSiteMetadata(new URL('/slow', url).toString())
+  const res = await fetchSiteMetadata(new URL('/slow', url))
   t.deepEqual(res, {
     title: 'title',
     description: undefined,
