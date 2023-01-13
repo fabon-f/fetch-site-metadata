@@ -3,10 +3,12 @@ lockfileVersion: 5.4
 specifiers:
   '@tsconfig/strictest': ^1.0.2
   '@types/node': ^18.11.18
+  '@types/test-listen': ^1.1.0
   ava: ^5.1.0
   html-rewriter-wasm: ^0.4.1
   node-fetch: ^3.3.0
   rimraf: ^4.0.4
+  test-listen: ^1.1.0
   tsx: ^3.12.2
   typescript: ^4.9.4
 
@@ -17,8 +19,10 @@ dependencies:
 devDependencies:
   '@tsconfig/strictest': 1.0.2
   '@types/node': 18.11.18
+  '@types/test-listen': 1.1.0
   ava: 5.1.0
   rimraf: 4.0.4
+  test-listen: 1.1.0
   tsx: 3.12.2
   typescript: 4.9.4
 
@@ -90,6 +94,12 @@ packages:
 
   /@types/node/18.11.18:
     resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==}
+    dev: true
+
+  /@types/test-listen/1.1.0:
+    resolution: {integrity: sha512-y6ZfbSzYHniCeY6ZAzsQjSAdJInNVoEz4Uhsb81W+RCoNYA59yoG/+XbqPqCPj2KCU3Wa6RFWSozutkGIHIsNQ==}
+    dependencies:
+      '@types/node': 18.11.18
     dev: true
 
   /acorn-walk/8.2.0:
@@ -1260,6 +1270,10 @@ packages:
   /temp-dir/3.0.0:
     resolution: {integrity: sha512-nHc6S/bwIilKHNRgK/3jlhDoIHcp45YgyiwcAk46Tr0LfEqGBVpmiAyuiuxeVE44m3mXnEeVhaipLOEWmH+Njw==}
     engines: {node: '>=14.16'}
+    dev: true
+
+  /test-listen/1.1.0:
+    resolution: {integrity: sha512-OyEVi981C1sb9NX1xayfgZls3p8QTDRwp06EcgxSgd1kktaENBW8dO15i8v/7Fi15j0IYQctJzk5J+hyEBId2w==}
     dev: true
 
   /time-zone/1.0.0:
