@@ -14,7 +14,16 @@ const testServer = createServer(async (req, res) => {
     return
   }
   try {
-    res.end(await readFile(join('./test/fixtures/', req.url)))
+    const file = await readFile(join('./test/fixtures/', req.url))
+    if (req.url.endsWith('.html')) {
+      const rule = {
+        '{{base}}': url
+      } as Record<string, string>
+      res.end(file.toString('utf-8').replace(/{{.*?}}/g, match => rule[match] ?? match))
+    } else {
+      res.end(file)
+    }
+    return
   } catch {}
 
   res.statusCode = 404
@@ -48,6 +57,28 @@ test('Interrupt request when <body> starts', async t => {
 test('Website without favicon', async t => {
   const res = await fetchSiteMetadata(siteWithoutFavicon)
   t.is(res.icon, undefined)
+})
+
+test('Website with OGP image', async t => {
+  const expectedUrl = new URL('/ogp.png', url).toString()
+  t.deepEqual((await fetchSiteMetadata(new URL('/1.html', url))).image, {
+    src: expectedUrl,
+    width: '1200',
+    height: '630',
+    alt: undefined
+  })
+  t.deepEqual((await fetchSiteMetadata(new URL('/2.html', url))).image, {
+    src: expectedUrl,
+    width: '600',
+    height: '315',
+    alt: 'alt text'
+  })
+  t.deepEqual((await fetchSiteMetadata(new URL('/3.html', url))).image, {
+    src: expectedUrl,
+    width: '1200',
+    height: '630',
+    alt: undefined
+  })
 })
 
 test.after(() => {

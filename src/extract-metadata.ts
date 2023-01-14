@@ -2,6 +2,13 @@ import { HTMLRewriter } from 'html-rewriter-wasm'
 import rules from './rules.js'
 import type { Rule } from './rules.js'
 
+export type ImageInfo = {
+  src: string | undefined
+  width: string | undefined
+  height: string | undefined
+  alt: string | undefined
+}
+
 function extractAttribute(rewriter: HTMLRewriter, selector: string, attribute: string): Promise<string | undefined> {
   return new Promise(resolve => {
     rewriter.on(selector, {
@@ -66,6 +73,9 @@ export default async function extractMetadata(stream: NodeJS.ReadableStream) {
     description: extract(rewriter, rules.description),
     icon: extract(rewriter, rules.icon),
     image: extract(rewriter, rules.image),
+    imageWidth: extractAttribute(rewriter, 'meta[property="og:image:width"]', 'content'),
+    imageHeight: extractAttribute(rewriter, 'meta[property="og:image:height"]', 'content'),
+    imageAlt: extractAttribute(rewriter, 'meta[property="og:image:alt"]', 'content')
   }
 
   for await (const chunk of stream) {
@@ -77,12 +87,17 @@ export default async function extractMetadata(stream: NodeJS.ReadableStream) {
   await rewriter.end()
   rewriter.free()
 
-  await Promise.all([promises.title, promises.description, promises.icon, promises.image])
+  await Promise.all(Object.values(promises))
 
   return {
     title: await promises.title,
     description: await promises.description,
     icon: await promises.icon,
-    image: await promises.image
+    image: {
+      src: await promises.image,
+      width: await promises.imageWidth,
+      height: await promises.imageHeight,
+      alt: await promises.imageAlt
+    }
   }
 }
