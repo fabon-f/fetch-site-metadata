@@ -50,14 +50,17 @@ export default async function fetchSiteMetadata(url: string | URL) {
   const metadata = await extractMetadata(response.body)
   controller.abort()
 
-  const iconUrl = typeof metadata.icon === 'string' ? fullUrl(metadata.icon, urlString) : await defaultFavicon(urlString)
+  const [iconUrl, imageInfo] = await Promise.all([
+    typeof metadata.icon === 'string' ? Promise.resolve(fullUrl(metadata.icon, urlString)) : defaultFavicon(urlString),
+    fetchImageInfo({
+      ...metadata.image,
+      src: metadata.image.src === undefined ? undefined : fullUrl(metadata.image.src, urlString)
+    })
+  ])
 
   return {
     ...metadata,
     icon: iconUrl,
-    image: await fetchImageInfo({
-      ...metadata.image,
-      src: metadata.image.src === undefined ? undefined : fullUrl(metadata.image.src, urlString)
-    })
+    image: imageInfo
   }
 }
