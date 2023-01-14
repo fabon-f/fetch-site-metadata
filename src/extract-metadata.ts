@@ -3,7 +3,7 @@ import rules from './rules.js'
 import type { Rule } from './rules.js'
 
 export type ImageInfo = {
-  src: string | undefined
+  src: string
   width: string | undefined
   height: string | undefined
   alt: string | undefined
@@ -89,12 +89,14 @@ export default async function extractMetadata(stream: NodeJS.ReadableStream) {
 
   await Promise.all(Object.values(promises))
 
+  const imageSrc = await promises.image
+
   return {
     title: await promises.title,
     description: await promises.description,
     icon: await promises.icon,
-    image: {
-      src: await promises.image,
+    image: imageSrc === undefined ? undefined : {
+      src: imageSrc,
       width: await promises.imageWidth,
       height: await promises.imageHeight,
       alt: await promises.imageAlt

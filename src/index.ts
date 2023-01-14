@@ -15,9 +15,6 @@ const defaultFavicon = async (baseUrl: string) => {
 }
 
 const fetchImageInfo = async (info: ImageInfo) => {
-  if (info.src === undefined) {
-    return undefined
-  }
   const intRegex = /0|[1-9][0-9]*/
   if (info.width !== undefined && info.height !== undefined && intRegex.test(info.width) && intRegex.test(info.height)) {
     return {
@@ -52,9 +49,9 @@ export default async function fetchSiteMetadata(url: string | URL) {
 
   const [iconUrl, imageInfo] = await Promise.all([
     typeof metadata.icon === 'string' ? Promise.resolve(fullUrl(metadata.icon, urlString)) : defaultFavicon(urlString),
-    fetchImageInfo({
+    metadata.image === undefined ? Promise.resolve(undefined) : fetchImageInfo({
       ...metadata.image,
-      src: metadata.image.src === undefined ? undefined : fullUrl(metadata.image.src, urlString)
+      src: fullUrl(metadata.image.src, urlString)
     })
   ])
 
