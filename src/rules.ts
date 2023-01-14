@@ -11,7 +11,8 @@ export default {
   ] as Rule[],
   description: [
     ['attr', 'meta[property="og:description"]', 'content'],
-    ['attr', 'meta[name="description" i]', 'content']
+    ['attr', 'meta[name="description" i]', 'content'],
+    ['attr', 'meta[name="twitter:description"]', 'content']
   ] as Rule[],
   icon: [
     ['attr', 'link[rel="apple-touch-icon"]', 'href'],
