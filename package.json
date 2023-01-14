@@ -11,7 +11,8 @@
   ],
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.dist.json",
-    "test": "ava"
+    "test": "ava",
+    "typecheck": "tsc"
   },
   "engines": {
     "node": ">=14.16"
