@@ -15,7 +15,7 @@
     "typecheck": "tsc"
   },
   "engines": {
-    "node": ">=14.16"
+    "node": ">=16.0"
   },
   "repository": {
     "type": "git",
