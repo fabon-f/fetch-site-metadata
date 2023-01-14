@@ -9,6 +9,13 @@ export type ImageInfo = {
   alt: string | undefined
 }
 
+export type Metadata = {
+  title: string | undefined
+  description: string | undefined
+  icon: string | undefined
+  image: ImageInfo | undefined
+}
+
 function extractAttribute(rewriter: HTMLRewriter, selector: string, attribute: string): Promise<string | undefined> {
   return new Promise(resolve => {
     rewriter.on(selector, {

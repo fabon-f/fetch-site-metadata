@@ -54,6 +54,28 @@ test('Interrupt request when <body> starts', async t => {
   })
 })
 
+test('Normalize URLs', async t => {
+  const res = await fetchSiteMetadata(new URL('/3.html', url))
+  t.deepEqual(res, {
+    title: 'title',
+    description: undefined,
+    icon: new URL('/favicon2.ico', url).toString(),
+    image: {
+      src: new URL('/ogp.png', url).toString(),
+      width: '1200',
+      height: '630',
+      alt: undefined
+    }
+  })
+
+  const res2 = await fetchSiteMetadata(new URL('/3.html', url), {
+    suppressAdditionalRequest: true
+  })
+  t.is(res2.icon, new URL('/favicon2.ico', url).toString())
+  t.not(res2.image, undefined)
+  t.is(res2.image!.src, new URL('/ogp.png', url).toString())
+})
+
 test('Website without favicon', async t => {
   const res = await fetchSiteMetadata(siteWithoutFavicon)
   t.is(res.icon, undefined)
@@ -79,6 +101,33 @@ test('Website with OGP image', async t => {
     height: '630',
     alt: undefined
   })
+})
+
+test('suppressAdditionalRequest option', async t => {
+  const res = await fetchSiteMetadata(new URL('/1.html', url), {
+    suppressAdditionalRequest: true
+  })
+  t.deepEqual(res.image, {
+    src: new URL('/ogp.png', url).toString(),
+    width: undefined,
+    height: undefined,
+    alt: undefined
+  })
+  const res2 = await fetchSiteMetadata(new URL('/3.html', url), {
+    suppressAdditionalRequest: true
+  })
+  t.deepEqual(res2.image, {
+    src: new URL('/ogp.png', url).toString(),
+    width: undefined,
+    height: undefined,
+    alt: undefined
+  })
+
+  const res3 = await fetchSiteMetadata(siteWithoutFavicon, {
+    suppressAdditionalRequest: true
+  })
+  // Actually `${siteWithoutFavicon}/favicon.ico` doesn't exist though
+  t.is(res3.icon, new URL('favicon.ico', siteWithoutFavicon).toString())
 })
 
 test.after(() => {
