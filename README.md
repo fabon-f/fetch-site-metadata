@@ -1,12 +1,22 @@
 # fetch-site-metadata
 
+High-performance metadata scraper for Node.js
+
 ## Features
 
 * Don't download whole contents to get site metadata.
   * Fetch and parse the content of the `head` element only. Interrupt HTTP request when the `<body>` element starts.
   * Download only first few kilobytes to determine image size (by `probe-image-size` package)
 
-## Example
+## Install
+
+```sh
+npm install fetch-site-metadata
+```
+
+## Usage
+
+This package requires Node.js v16 or higher. ESM only.
 
 ```ts
 import fetchSiteMetadata from 'fetch-site-metadata'
@@ -28,7 +38,7 @@ await fetchSiteMetadata('https://github.com/')
 
 ## API
 
-### `fetchSiteMetadata(url: string, options?: Options)`
+### `fetchSiteMetadata(url: string | URL, options?: Options)`
 
 Return value: `Promise<Metadata>`
 
