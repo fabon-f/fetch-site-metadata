@@ -103,6 +103,12 @@ test('Website with OGP image', async t => {
   })
 })
 
+test('Decode HTML entities', async t => {
+  const res = await fetchSiteMetadata(new URL('/4.html', url))
+  t.is(res.title, '&quot;Oh my god&quot; - he said.')
+  t.is(res.description, '&quot;Oh my god&quot; - he said.')
+})
+
 test('suppressAdditionalRequest option', async t => {
   const res = await fetchSiteMetadata(new URL('/1.html', url), {
     suppressAdditionalRequest: true

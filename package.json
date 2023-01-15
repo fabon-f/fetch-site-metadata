@@ -33,6 +33,7 @@
   "homepage": "https://github.com/fabon-f/fetch-site-metadata#readme",
   "dependencies": {
     "@types/node": "^18.11.18",
+    "entities": "^4.4.0",
     "html-rewriter-wasm": "^0.4.1",
     "node-fetch": "^3.3.0",
     "probe-image-size": "^7.2.3"

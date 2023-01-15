@@ -6,6 +6,7 @@ specifiers:
   '@types/probe-image-size': ^7.2.0
   '@types/test-listen': ^1.1.0
   ava: ^5.1.0
+  entities: ^4.4.0
   html-rewriter-wasm: ^0.4.1
   node-fetch: ^3.3.0
   probe-image-size: ^7.2.3
@@ -16,6 +17,7 @@ specifiers:
 
 dependencies:
   '@types/node': 18.11.18
+  entities: 4.4.0
   html-rewriter-wasm: 0.4.1
   node-fetch: 3.3.0
   probe-image-size: 7.2.3
@@ -487,6 +489,11 @@ packages:
   /emoji-regex/9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
     dev: true
+
+  /entities/4.4.0:
+    resolution: {integrity: sha512-oYp7156SP8LkeGD0GF85ad1X9Ai79WtRsZ2gxJqtBuzH+98YUV6jkHEKlZkMbcrjJjIVJNIDP/3WL9wQkoPbWA==}
+    engines: {node: '>=0.12'}
+    dev: false
 
   /esbuild-android-64/0.15.18:
     resolution: {integrity: sha512-wnpt3OXRhcjfIDSZu9bnzT4/TNTDsOUvip0foZOUBG7QbSt//w3QV4FInVJxNhKc/ErhUxc5z4QjHtMi7/TbgA==}

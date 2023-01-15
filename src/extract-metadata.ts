@@ -1,4 +1,5 @@
 import { HTMLRewriter } from 'html-rewriter-wasm'
+import { decodeHTML } from 'entities'
 import rules from './rules.js'
 import type { Rule } from './rules.js'
 
@@ -22,7 +23,7 @@ function extractAttribute(rewriter: HTMLRewriter, selector: string, attribute: s
       element(el) {
         const attr = el.getAttribute(attribute)
         if (attr) {
-          resolve(attr)
+          resolve(decodeHTML(attr))
         }
       }
     }).onDocument({
@@ -40,7 +41,7 @@ function extractText(rewriter: HTMLRewriter, selector: string): Promise<string |
       text(node) {
         str += node.text
         if (node.lastInTextNode) {
-          resolve(str)
+          resolve(decodeHTML(str))
         }
       }
     }).onDocument({
