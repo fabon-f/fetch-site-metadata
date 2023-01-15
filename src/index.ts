@@ -66,7 +66,12 @@ export type Options = {
   suppressAdditionalRequest?: boolean
 }
 
-export default async function fetchSiteMetadata(url: string | URL, options: Options = {}) {
+export type {
+  Metadata,
+  ImageInfo
+}
+
+export default async function fetchSiteMetadata(url: string | URL, options: Options = {}): Promise<Metadata> {
   const urlString = typeof url === 'string' ? url : url.toString()
   const controller = new AbortController()
   const response = await fetch(urlString, {
