@@ -136,6 +136,11 @@ test('suppressAdditionalRequest option', async t => {
   t.is(res3.icon, new URL('favicon.ico', siteWithoutFavicon).toString())
 })
 
+test('Deprecated icon rel', async t => {
+  const res = await fetchSiteMetadata(new URL('/4.html', url))
+  t.is(res.icon, new URL('/favicon2.ico', url).toString());
+})
+
 test.after(() => {
   testServer.close()
   testServerWithoutFavicon.close()

@@ -17,7 +17,7 @@ export default {
   icon: [
     ['attr', 'link[rel="apple-touch-icon"]', 'href'],
     ['attr', 'link[rel="apple-touch-icon-precomposed"]', 'href'],
-    ['attr', 'link[rel="icon" i]', 'href']
+    ['attr', 'link[rel~="icon" i]', 'href']
   ] as Rule[],
   image: [
     ['attr', 'meta[property="og:image:secure_url"]', 'content'],
