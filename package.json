@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.dist.json",
-    "test": "ava",
+    "test": "NODE_OPTIONS='--loader=tsx' ava",
     "typecheck": "tsc"
   },
   "engines": {
@@ -51,9 +51,6 @@
   "ava": {
     "extensions": {
       "ts": "module"
-    },
-    "nodeArguments": [
-      "--loader=tsx"
-    ]
+    }
   }
 }
