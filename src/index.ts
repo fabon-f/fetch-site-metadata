@@ -1,4 +1,3 @@
-import fetch from 'node-fetch'
 import imageSize from 'probe-image-size'
 
 import extractMetadata from './extract-metadata.js'

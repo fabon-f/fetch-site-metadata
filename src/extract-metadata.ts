@@ -61,7 +61,7 @@ const extract = async (rewriter: HTMLRewriter, rules: Rule[]) => {
   return values.find(s => s !== undefined)
 }
 
-export default async function extractMetadata(stream: NodeJS.ReadableStream) {
+export default async function extractMetadata(stream: ReadableStream) {
   const rewriter = new HTMLRewriter(() => {})
   const encoder = new TextEncoder()
 
