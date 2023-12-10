@@ -1,6 +1,6 @@
 {
   "name": "fetch-site-metadata",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "High-performance metadata scraper",
   "type": "module",
   "exports": "./dist/index.js",
