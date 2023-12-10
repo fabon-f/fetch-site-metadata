@@ -13,6 +13,14 @@ const testServer = createServer(async (req, res) => {
     res.end('</div></html>')
     return
   }
+  if (req.url === '/header-test') {
+    if (req.headers['test'] === 'true') {
+      res.end('<title>title</title>')
+    } else {
+      res.end('<title>error</title>')
+    }
+    return
+  }
   try {
     const file = await readFile(join('./test/fixtures/', req.url))
     if (req.url.endsWith('.html')) {
@@ -139,6 +147,13 @@ test('suppressAdditionalRequest option', async t => {
 test('Deprecated icon rel', async t => {
   const res = await fetchSiteMetadata(new URL('/4.html', url))
   t.is(res.icon, new URL('/favicon2.ico', url).toString());
+})
+
+test('Passing fetch options', async t => {
+  const res = await fetchSiteMetadata(new URL('/header-test', url), {
+    headers: { 'test': 'true' }
+  })
+  t.is(res.title, 'title')
 })
 
 test.after(() => {

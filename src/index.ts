@@ -61,19 +61,33 @@ const fetchImageInfo = async (info: ImageInfo) => {
   }
 }
 
-export type Options = {
+type IntrinsicOptions = {
   suppressAdditionalRequest?: boolean
 }
+
+export type Options = IntrinsicOptions & Parameters<typeof fetch>[1]
 
 export type {
   Metadata,
   ImageInfo
 }
 
+function fetchOptions(options: Options): RequestInit {
+  const res = {} as Record<string, any>
+  const optionKeys = ['suppressAdditionalRequest']
+  for (const [k, v] of Object.entries(options)) {
+    if (!optionKeys.includes(k)) {
+      res[k] = v
+    }
+  }
+  return res
+}
+
 export default async function fetchSiteMetadata(url: string | URL, options: Options = {}): Promise<Metadata> {
   const urlString = typeof url === 'string' ? url : url.toString()
   const controller = new AbortController()
   const response = await fetch(urlString, {
+    ...fetchOptions(options),
     signal: controller.signal
   })
   if (!response.body) { throw new Error('response.body') }

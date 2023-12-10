@@ -46,10 +46,12 @@ Fetch target site and scrape metadata. This function send multiple requests to d
 
 `suppressAdditionalRequest` option suppress this behavior. With `suppressAdditionalRequest`option, this function fetches only the specified URL and reduces processing time, but provides only information which can be extracted from the specified page.
 
+You can also pass the options for `fetch` function.
+
 ```ts
 type Options = {
   suppressAdditionalRequest?: boolean
-}
+} & RequestInit
 
 type ImageInfo = {
   src: string
@@ -64,4 +66,9 @@ type Metadata = {
   icon: string | undefined
   image: ImageInfo | undefined
 }
+```
+
+```ts
+// example using fetch options
+fetchSiteMetadata('https://example.test', { headers: { 'User-Agent': 'bot' } })
 ```
