@@ -32,9 +32,9 @@ const normalizeMetadata = (data: Metadata, targetUrl: string): Metadata => {
   }
 }
 
-const defaultFavicon = async (baseUrl: string) => {
+const defaultFavicon = async (baseUrl: string, fetchOptions: RequestInit) => {
   const defaultFaviconUrl = new URL('/favicon.ico', baseUrl).toString()
-  const response = await fetch(defaultFaviconUrl)
+  const response = await fetch(defaultFaviconUrl, fetchOptions)
   return response.ok ? defaultFaviconUrl : undefined
 }
 
@@ -72,7 +72,7 @@ export type {
   ImageInfo
 }
 
-function fetchOptions(options: Options): RequestInit {
+function getFetchOptions(options: Options): RequestInit {
   const res = {} as Record<string, any>
   const optionKeys = ['suppressAdditionalRequest']
   for (const [k, v] of Object.entries(options)) {
@@ -86,8 +86,9 @@ function fetchOptions(options: Options): RequestInit {
 export default async function fetchSiteMetadata(url: string | URL, options: Options = {}): Promise<Metadata> {
   const urlString = typeof url === 'string' ? url : url.toString()
   const controller = new AbortController()
+  const fetchOptions = getFetchOptions(options)
   const response = await fetch(urlString, {
-    ...fetchOptions(options),
+    ...fetchOptions,
     signal: controller.signal
   })
   if (!response.body) { throw new Error('response.body') }
@@ -102,7 +103,7 @@ export default async function fetchSiteMetadata(url: string | URL, options: Opti
   }
 
   const [iconUrl, imageInfo] = await Promise.all([
-    typeof metadata.icon === 'string' ? Promise.resolve(metadata.icon) : defaultFavicon(urlString),
+    typeof metadata.icon === 'string' ? Promise.resolve(metadata.icon) : defaultFavicon(urlString, fetchOptions),
     metadata.image === undefined ? Promise.resolve(undefined) : fetchImageInfo(metadata.image)
   ])
 
