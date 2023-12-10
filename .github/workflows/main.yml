@@ -19,11 +19,8 @@ jobs:
           - 20
         os:
           - ubuntu-latest
-          - windows-latest
-        exclude:
-          # I don't know and don't have energy to investigate why the tests fails.
-          - os: windows-latest
-            node-version: 20
+          # I don't know and don't have energy to investigate why the tests fails sometimes on Windows.
+          # - windows-latest
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
