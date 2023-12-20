@@ -34,7 +34,7 @@
   "dependencies": {
     "entities": "^4.5.0",
     "html-rewriter-wasm": "^0.4.1",
-    "probe-image-size": "^7.2.3"
+    "image-dimensions": "^2.3.0"
   },
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.1",

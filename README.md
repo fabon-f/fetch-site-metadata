@@ -6,7 +6,7 @@ High-performance metadata scraper for Node.js
 
 * Don't download whole contents to get site metadata.
   * Fetch and parse the content of the `head` element only. Interrupt HTTP request when the `<body>` element starts.
-  * Download only first few kilobytes to determine image size (by `probe-image-size` package)
+  * Download only first few kilobytes to determine image size (by `image-dimensions` package)
 
 ## Install
 

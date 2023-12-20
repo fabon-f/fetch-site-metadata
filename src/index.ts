@@ -1,4 +1,4 @@
-import imageSize from 'probe-image-size'
+import fetchImageSize from './fetch-image-size.js'
 
 import extractMetadata from './extract-metadata.js'
 import type { ImageInfo, Metadata } from './extract-metadata.js'
@@ -38,7 +38,7 @@ const defaultFavicon = async (baseUrl: string, fetchOptions: RequestInit) => {
   return response.ok ? defaultFaviconUrl : undefined
 }
 
-const fetchImageInfo = async (info: ImageInfo) => {
+const fetchImageInfo = async (info: ImageInfo, fetchOptions: RequestInit) => {
   const intRegex = /0|[1-9][0-9]*/
   if (info.width !== undefined && info.height !== undefined && intRegex.test(info.width) && intRegex.test(info.height)) {
     return {
@@ -48,17 +48,16 @@ const fetchImageInfo = async (info: ImageInfo) => {
       alt: info.alt
     }
   }
-  try {
-    const actualSize = await imageSize(info.src)
+  const actualSize = await fetchImageSize(info.src, fetchOptions)
+  if (actualSize) {
     return {
       src: info.src,
       width: actualSize.width.toString(),
       height: actualSize.height.toString(),
       alt: info.alt
     }
-  } catch {
-    return info
   }
+  return info
 }
 
 type IntrinsicOptions = {
@@ -104,7 +103,7 @@ export default async function fetchSiteMetadata(url: string | URL, options: Opti
 
   const [iconUrl, imageInfo] = await Promise.all([
     typeof metadata.icon === 'string' ? Promise.resolve(metadata.icon) : defaultFavicon(urlString, fetchOptions),
-    metadata.image === undefined ? Promise.resolve(undefined) : fetchImageInfo(metadata.image)
+    metadata.image === undefined ? Promise.resolve(undefined) : fetchImageInfo(metadata.image, fetchOptions)
   ])
 
   return {
