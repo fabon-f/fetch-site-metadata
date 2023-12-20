@@ -38,7 +38,6 @@
   },
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.1",
-    "@types/probe-image-size": "^7.2.0",
     "@types/test-listen": "^1.1.0",
     "ava": "^5.3.1",
     "rimraf": "^5.0.1",

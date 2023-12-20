@@ -19,9 +19,6 @@ devDependencies:
   '@tsconfig/strictest':
     specifier: ^2.0.1
     version: 2.0.1
-  '@types/probe-image-size':
-    specifier: ^7.2.0
-    version: 7.2.0
   '@types/test-listen':
     specifier: ^1.1.0
     version: 1.1.0
@@ -306,21 +303,8 @@ packages:
     resolution: {integrity: sha512-7JHHCbyCsGUxLd0pDbp24yz3zjxw2t673W5oAP6HCEdr/UUhaRhYd3SSnUsGCk+VnPVJVA4mXROzbhI+nyIk+w==}
     dev: true
 
-  /@types/needle@3.2.0:
-    resolution: {integrity: sha512-6XzvzEyJ2ozFNfPajFmqH9JOt0Hp+9TawaYpJT59iIP/zR0U37cfWCRwosyIeEBBZBi021Osq4jGAD3AOju5fg==}
-    dependencies:
-      '@types/node': 20.5.6
-    dev: true
-
   /@types/node@20.5.6:
     resolution: {integrity: sha512-Gi5wRGPbbyOTX+4Y2iULQ27oUPrefaB0PxGQJnfyWN3kvEDGM3mIB5M/gQLmitZf7A9FmLeaqxD3L1CXpm3VKQ==}
-    dev: true
-
-  /@types/probe-image-size@7.2.0:
-    resolution: {integrity: sha512-R5H3vw62gHNHrn+JGZbKejb+Z2D/6E5UNVlhCzIaBBLroMQMOFqy5Pap2gM+ZZHdqBtVU0/cx/M6to+mOJcoew==}
-    dependencies:
-      '@types/needle': 3.2.0
-      '@types/node': 20.5.6
     dev: true
 
   /@types/test-listen@1.1.0:
