@@ -21,6 +21,14 @@ const testServer = createServer(async (req, res) => {
     }
     return
   }
+  if (req.url === '/utf8-stream') {
+    res.write('<title>あい')
+    res.write(Uint8Array.from([227]))
+    await new Promise(resolve => setTimeout(resolve, 100))
+    res.write(Uint8Array.from([129, 134]))
+    res.end('</title>')
+    return
+  }
   try {
     const file = await readFile(join('./test/fixtures/', req.url))
     if (req.url.endsWith('.html')) {
@@ -154,6 +162,11 @@ test('Passing fetch options', async t => {
     headers: { 'test': 'true' }
   })
   t.is(res.title, 'title')
+})
+
+test('Chunks which are invalid in UTF-8', async t => {
+  const res = await fetchSiteMetadata(new URL('/utf8-stream', url))
+  t.is(res.title, 'あいう')
 })
 
 test.after(() => {
