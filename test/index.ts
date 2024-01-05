@@ -3,13 +3,22 @@ import listen from 'test-listen'
 import { createServer } from 'node:http'
 import { join } from 'node:path'
 import { readFile } from 'node:fs/promises'
+import { setTimeout as setTimeoutPromise } from 'node:timers/promises'
 import fetchSiteMetadata from '../src/index.js'
+
+const wait = (time: number, signal: AbortSignal) => {
+  return setTimeoutPromise(time, null, { signal }).catch(_ => null)
+}
+
+const controllers: AbortController[] = []
 
 const testServer = createServer(async (req, res) => {
   if (req.url === undefined) { throw new Error('req.url is undefined') }
   if (req.url === '/slow') {
+    const controller = new AbortController()
+    controllers.push(controller)
     res.write('<title>title</title><div>')
-    await new Promise(resolve => setTimeout(resolve, 5000))
+    await wait(5000, controller.signal)
     res.end('</div></html>')
     return
   }
@@ -172,4 +181,7 @@ test('Chunks which are invalid in UTF-8', async t => {
 test.after(() => {
   testServer.close()
   testServerWithoutFavicon.close()
+  for (const controller of controllers) {
+    controller.abort()
+  }
 })
