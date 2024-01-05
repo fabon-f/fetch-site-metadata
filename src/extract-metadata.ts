@@ -61,9 +61,8 @@ const extract = async (rewriter: HTMLRewriter, rules: Rule[]) => {
   return values.find(s => s !== undefined)
 }
 
-export default async function extractMetadata(stream: ReadableStream) {
+export default async function extractMetadata(stream: ReadableStream<Uint8Array>) {
   const rewriter = new HTMLRewriter(() => {})
-  const encoder = new TextEncoder()
 
   const elementsBeforeBody = ['html', 'head', 'base', 'link', 'meta', 'noscript', 'script', 'style', 'template', 'title']
 
@@ -87,7 +86,7 @@ export default async function extractMetadata(stream: ReadableStream) {
   }
 
   for await (const chunk of stream) {
-    await rewriter.write(typeof chunk === 'string' ? encoder.encode(chunk) : chunk)
+    await rewriter.write(chunk)
     if (end) {
       break
     }
