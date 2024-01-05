@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.dist.json",
-    "test": "NODE_OPTIONS='--loader=tsx' ava",
+    "test": "ava",
     "typecheck": "tsc"
   },
   "engines": {
@@ -37,17 +37,20 @@
     "image-dimensions": "^2.3.0"
   },
   "devDependencies": {
-    "@tsconfig/strictest": "^2.0.1",
-    "@types/test-listen": "^1.1.0",
-    "ava": "^5.3.1",
-    "rimraf": "^5.0.1",
+    "@ava/typescript": "^4.1.0",
+    "@tsconfig/strictest": "^2.0.2",
+    "@types/test-listen": "^1.1.2",
+    "ava": "^6.0.1",
+    "rimraf": "^5.0.5",
     "test-listen": "^1.1.0",
-    "tsx": "^3.12.7",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   },
   "ava": {
-    "extensions": {
-      "ts": "module"
+    "typescript": {
+      "rewritePaths": {
+        "/": "dist-dev/"
+      },
+      "compile": "tsc"
     }
   }
 }
