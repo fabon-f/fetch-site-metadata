@@ -37,13 +37,13 @@
     "image-dimensions": "^2.3.0"
   },
   "devDependencies": {
-    "@ava/typescript": "^4.1.0",
-    "@tsconfig/strictest": "^2.0.2",
+    "@ava/typescript": "^5.0.0",
+    "@tsconfig/strictest": "^2.0.5",
     "@types/test-listen": "^1.1.2",
-    "ava": "^6.0.1",
-    "rimraf": "^5.0.5",
+    "ava": "^6.1.3",
+    "rimraf": "^5.0.7",
     "test-listen": "^1.1.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.5"
   },
   "ava": {
     "typescript": {
