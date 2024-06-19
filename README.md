@@ -16,7 +16,7 @@ npm install fetch-site-metadata
 
 ## Usage
 
-This package requires Node.js v16 or higher. ESM only.
+This package requires Node.js v18 or higher. ESM only.
 
 ```ts
 import fetchSiteMetadata from 'fetch-site-metadata'
