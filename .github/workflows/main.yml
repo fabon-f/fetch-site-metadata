@@ -18,6 +18,7 @@ jobs:
           - 18
           - 20
           - 22
+          - 23
         os:
           - ubuntu-latest
           # I don't know and don't have energy to investigate why the tests fails sometimes on Windows.
