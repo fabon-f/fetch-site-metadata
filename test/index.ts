@@ -1,5 +1,5 @@
 import test from 'ava'
-import listen from 'test-listen'
+import { listen } from 'async-listen'
 import { createServer } from 'node:http'
 import { join } from 'node:path'
 import { readFile } from 'node:fs/promises'
@@ -42,7 +42,7 @@ const testServer = createServer(async (req, res) => {
     const file = await readFile(join('./test/fixtures/', req.url))
     if (req.url.endsWith('.html')) {
       const rule = {
-        '{{base}}': url
+        '{{base}}': url.href
       } as Record<string, string>
       res.end(file.toString('utf-8').replace(/{{.*?}}/g, match => rule[match] ?? match))
     } else {

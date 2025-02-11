@@ -24,18 +24,18 @@ importers:
       '@tsconfig/strictest':
         specifier: ^2.0.5
         version: 2.0.5
-      '@types/test-listen':
-        specifier: ^1.1.2
-        version: 1.1.2
+      '@types/node':
+        specifier: ^22.13.1
+        version: 22.13.1
+      async-listen:
+        specifier: ^3.0.1
+        version: 3.0.1
       ava:
         specifier: ^6.2.0
         version: 6.2.0(@ava/typescript@5.0.0)
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
-      test-listen:
-        specifier: ^1.1.0
-        version: 1.1.0
       typescript:
         specifier: ^5.7.3
         version: 5.7.3
@@ -97,9 +97,6 @@ packages:
   '@types/node@22.13.1':
     resolution: {integrity: sha512-jK8uzQlrvXqEU91UxiK5J7pKHyzgnI1Qnl0QDHIgVGuolJhRb9EEl28Cj9b3rGR8B2lhFCtvIm5os8lFnO/1Ew==}
 
-  '@types/test-listen@1.1.2':
-    resolution: {integrity: sha512-1z4+FBjfjHOu9d3dXUWE5yD/iwVe3OrHALX6Y2Qsv3CAL1+U2lvsIgbrIyHifi8HH1CUkHTYNDUFuUNXk1gusA==}
-
   '@vercel/nft@0.27.10':
     resolution: {integrity: sha512-zbaF9Wp/NsZtKLE4uVmL3FyfFwlpDyuymQM1kPbeT0mVOHKDQQNjnnfslB3REg3oZprmNFJuh3pkHBk2qAaizg==}
     engines: {node: '>=16'}
@@ -157,6 +154,10 @@ packages:
   arrify@3.0.0:
     resolution: {integrity: sha512-tLkvA81vQG/XqE2mjDkGQHoOINtMHtysSnemrmoGe6PydDPMRbVugqyk4A6V/WDWEfm3l+0d8anA9r8cv/5Jaw==}
     engines: {node: '>=12'}
+
+  async-listen@3.0.1:
+    resolution: {integrity: sha512-cWMaNwUJnf37C/S5TfCkk/15MwbPRwVYALA2jtjkbHjCmAPiDXyNJy2q3p1KAZzDLHAWyarUWSujUoHR4pEgrA==}
+    engines: {node: '>= 14'}
 
   async-sema@3.1.1:
     resolution: {integrity: sha512-tLRNUXati5MFePdAk8dw7Qt7DpxPB60ofAgn8WRhW6a2rcimZnYBP9oxHiv0OHy+Wz7kPMG+t4LGdt31+4EmGg==}
@@ -753,9 +754,6 @@ packages:
     resolution: {integrity: sha512-nHc6S/bwIilKHNRgK/3jlhDoIHcp45YgyiwcAk46Tr0LfEqGBVpmiAyuiuxeVE44m3mXnEeVhaipLOEWmH+Njw==}
     engines: {node: '>=14.16'}
 
-  test-listen@1.1.0:
-    resolution: {integrity: sha512-OyEVi981C1sb9NX1xayfgZls3p8QTDRwp06EcgxSgd1kktaENBW8dO15i8v/7Fi15j0IYQctJzk5J+hyEBId2w==}
-
   time-zone@1.0.0:
     resolution: {integrity: sha512-TIsDdtKo6+XrPtiTm1ssmMngN1sAhyKnTO2kunQWqNPWIVvCm15Wmw4SWInwTVgJ5u/Tr04+8Ei9TNcw4x4ONA==}
     engines: {node: '>=4'}
@@ -893,10 +891,6 @@ snapshots:
     dependencies:
       undici-types: 6.20.0
 
-  '@types/test-listen@1.1.2':
-    dependencies:
-      '@types/node': 22.13.1
-
   '@vercel/nft@0.27.10':
     dependencies:
       '@mapbox/node-pre-gyp': 2.0.0
@@ -949,6 +943,8 @@ snapshots:
   arrgv@1.0.2: {}
 
   arrify@3.0.0: {}
+
+  async-listen@3.0.1: {}
 
   async-sema@3.1.1: {}
 
@@ -1502,8 +1498,6 @@ snapshots:
       yallist: 5.0.0
 
   temp-dir@3.0.0: {}
-
-  test-listen@1.1.0: {}
 
   time-zone@1.0.0: {}
 
