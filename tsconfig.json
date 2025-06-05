@@ -4,12 +4,16 @@
     "module": "Node16",
     "moduleResolution": "Node16",
     "target": "ES2023",
-    "outDir": "dist-dev"
+    "noEmit": true
+  },
+  "tsimp": {
+    "compilerOptions": {
+      "noCheck": true
+    }
   },
   "exclude": [
     "node_modules",
     "**/node_modules/*",
-    "dist",
-    "dist-dev"
+    "dist"
   ]
 }

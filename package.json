@@ -37,20 +37,20 @@
     "image-dimensions": "^2.3.0"
   },
   "devDependencies": {
-    "@ava/typescript": "^5.0.0",
     "@tsconfig/strictest": "^2.0.5",
     "@types/node": "^22.15.29",
     "async-listen": "^3.1.0",
     "ava": "^6.3.0",
     "rimraf": "^6.0.1",
+    "tsimp": "^2.0.12",
     "typescript": "^5.8.3"
   },
   "ava": {
-    "typescript": {
-      "rewritePaths": {
-        "/": "dist-dev/"
-      },
-      "compile": "tsc"
-    }
+    "extensions": {
+      "ts": "module"
+    },
+    "nodeArguments": [
+      "--import=tsimp"
+    ]
   }
 }
