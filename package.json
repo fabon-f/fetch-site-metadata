@@ -45,6 +45,7 @@
     "tsimp": "^2.0.12",
     "typescript": "^5.9.3"
   },
+  "packageManager": "pnpm@10.26.1",
   "ava": {
     "extensions": {
       "ts": "module"
