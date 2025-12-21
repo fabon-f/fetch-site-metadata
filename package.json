@@ -32,18 +32,18 @@
   },
   "homepage": "https://github.com/fabon-f/fetch-site-metadata#readme",
   "dependencies": {
-    "entities": "^6.0.0",
+    "entities": "^7.0.0",
     "html-rewriter-wasm": "^0.4.1",
-    "image-dimensions": "^2.3.0"
+    "image-dimensions": "^2.5.0"
   },
   "devDependencies": {
-    "@tsconfig/strictest": "^2.0.5",
-    "@types/node": "^22.15.29",
+    "@tsconfig/strictest": "^2.0.8",
+    "@types/node": "^25.0.3",
     "async-listen": "^3.1.0",
-    "ava": "^6.3.0",
-    "rimraf": "^6.0.1",
+    "ava": "^6.4.1",
+    "rimraf": "^6.1.2",
     "tsimp": "^2.0.12",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.3"
   },
   "ava": {
     "extensions": {
