@@ -6,11 +6,6 @@
     "target": "ES2023",
     "noEmit": true
   },
-  "tsimp": {
-    "compilerOptions": {
-      "noCheck": true
-    }
-  },
   "exclude": [
     "node_modules",
     "**/node_modules/*",
